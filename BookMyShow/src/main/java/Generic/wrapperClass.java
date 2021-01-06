@@ -76,28 +76,7 @@ String getSelectedName = random.getText();
 System.out.println("You Have Selected= " +getSelectedName);
 random.click();
 }
-//Random number1
-public void randomSelect1(By locator)
-{
-	java.util.List<WebElement> objrandomSelect = objPojo.getDriver().findElements(locator);
-Random objrandom=new Random();
-int size = objrandom.nextInt(objrandomSelect.size());
-WebElement random = objrandomSelect.get(size);
-String getSelectedName = random.getText();
-System.out.println("You Have Selected= " +getSelectedName);
-int input = Integer.parseInt(getSelectedName);
 
-int count=0;
-for (int i = 1; i <=input; i++) {
-if (input%i==0) {
-count++;
-}
-}
-if (count==2){
-	random.click();
-System.out.println("Number is prime");
-}
-}
 
 
 //// Random number2
@@ -126,6 +105,13 @@ public int getPrimeNo()
 
 	}
 	return num;
+}
+
+//ActionsClick
+public void ActionClick(WebElement element)
+{
+	Actions actions = new Actions(objPojo.getDriver());
+    actions.moveToElement(element).click().build().perform();
 }
 }
 

@@ -33,6 +33,7 @@ public class Book_Test extends BaseTest{
 	 objHomePage.selectShowTime();
 	 objHomePage.clkOnBtnAccept();
 	 objHomePage.SelectPrimeSeatNumber();
+	 objHomePage.CalculateTaxAmount();
 	 
  }
 }

@@ -45,11 +45,11 @@ public class HomePage {
     By SeatNumberSelect = By.xpath("//a[@class='_available']");
     By getNumberSeat = By.xpath("//div[@class='no-of-tickets']//span[@id='intQty']");
     By btnPayRs = By.xpath("(//a[@id='btmcntbook'])[1]");
-    By ddTax = By.xpath("//*[@id=\"bksmile\"]/div[3]/div/div[1]/div[1]/ul/li[2]/div[1]/p/span[1]");
-    By AmountTax = By.xpath("//*[@id=\"intHandlingFeeBreakdown\"]/ul/li[2]/span[2]");
-    By mTicket = By.xpath("//*[@id=\"shmticket\"]/label");
+    By AmountTax = By.xpath("//div[@class='order-summary']//following::ul[@class='__details']//following::span[@class='__up-icon up-icon-tax'][2]");
+    By ddTax = By.xpath("//div[@id='intHandlingFeeBreakdown']/ul/li[2]/span[2]");
+    By mTicket = By.xpath("//label[@for='mticket']");
     By btnProceed = By.xpath("//a[@id='prePay']");
-    By 
+    //By 
 	
 	//Handle PopUp
 	public void handlePopUp()
@@ -63,6 +63,17 @@ public class HomePage {
 	{
 		 objPojo.getWrapper().randomSelect(inpSearchCity);
 	}
+//	public void selectCity() {
+//        objPojo.getWrapper().waitforvisibileelement(inpSearchCity);
+//        String selCity = objPojo.getWrapper().randomSelect2(inpSearchCity);       
+//        System.out.println("Select City: "+selCity);
+//        if (selCity.equalsIgnoreCase("Kochi")) {
+//            objPojo.getDriver().findElement(By.xpath("//span[contains(text(),'Kochi')]")).click();
+//            objPojo.getWrapper().waitForElemenClickable(inpSearchCity);
+//            String selCity1 = objPojo.getWrapper().generateRandomAndClick(inpSearchCity);
+//            System.out.println("Select city:"+selCity1 );
+//        }
+//    }
 	//click on movies link 
 	public void clkMovies()
 	{
@@ -115,7 +126,7 @@ public class HomePage {
 	}
 	public void clkOnBtnAccept()
 	{
-		objPojo.getWrapper().click(btnAccept);
+		objPojo.getDriver().findElement(btnAccept).click();
 	}
 //	public void SelectPrimeSeatNumber()
 //	{
@@ -189,10 +200,17 @@ public class HomePage {
 		  System.out.println(num);
 		  for(int i=0;i<=num-1;i++)
 		  {			
-			  objPojo.getDriver().findElement(SeatNumberSelect).click();
+			  WebElement element = objPojo.getDriver().findElement(SeatNumberSelect);
+			  objPojo.getWrapper().ActionClick(element);
 			  boolean flag = objPojo.getDriver().findElement(btnPayRs).isDisplayed();
-			  while (flag==true)
-			  {		
+//			  while (flag==true)
+//			  {		
+//				  objPojo.getWrapper().click(btnPayRs);
+//				  
+//			  }
+			  if (flag==true)
+			  {
+				  objPojo.getWrapper().waitforvisibileelement(btnPayRs);
 				  objPojo.getWrapper().click(btnPayRs);
 			  }
 		  
@@ -200,14 +218,27 @@ public class HomePage {
 	}
 	public void CalculateTaxAmount()
 	{
-		objPojo.getWrapper().click(btnPayRs);
-		System.out.println(objPojo.getDriver().findElement(AmountTax).getText());
-		objPojo.getWrapper().clickOnRadioButton(mTicket);
-		objPojo.getWrapper().click(btnProceed);
 		
+		System.out.println(objPojo.getDriver().findElement(AmountTax).getText());
+		objPojo.getWrapper().waitforvisibileelement(btnProceed);
+		boolean flag = objPojo.getDriver().findElement(mTicket).isDisplayed();
+		if (flag==true)
+		{
+		WebElement element = objPojo.getDriver().findElement(mTicket);
+		objPojo.getWrapper().ActionClick(element);
+		objPojo.getWrapper().click(btnProceed);
+		}else
+		{
+		objPojo.getWrapper().click(btnProceed);
+		}
 	}
 	
-	}
+
+	
+	
+	}	
+	
+	
 	
 	
 
