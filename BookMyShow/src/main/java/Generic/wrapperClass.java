@@ -76,4 +76,57 @@ String getSelectedName = random.getText();
 System.out.println("You Have Selected= " +getSelectedName);
 random.click();
 }
+//Random number1
+public void randomSelect1(By locator)
+{
+	java.util.List<WebElement> objrandomSelect = objPojo.getDriver().findElements(locator);
+Random objrandom=new Random();
+int size = objrandom.nextInt(objrandomSelect.size());
+WebElement random = objrandomSelect.get(size);
+String getSelectedName = random.getText();
+System.out.println("You Have Selected= " +getSelectedName);
+int input = Integer.parseInt(getSelectedName);
+
+int count=0;
+for (int i = 1; i <=input; i++) {
+if (input%i==0) {
+count++;
 }
+}
+if (count==2){
+	random.click();
+System.out.println("Number is prime");
+}
+}
+
+
+//// Random number2
+public int randomSelect2(By locator)
+{
+	java.util.List<WebElement> objrandomSelect = objPojo.getDriver().findElements(locator);
+Random objrandom=new Random();
+int size = objrandom.nextInt(objrandomSelect.size());
+WebElement random = objrandomSelect.get(size);
+String getSelectedName = random.getText();
+System.out.println("You Have Selected= " +getSelectedName);
+random.click();
+return size;
+
+}
+//PrimeNumber
+public int getPrimeNo()
+{
+
+	int a[]={2, 3, 5, 7};
+	Random r=new Random();
+	int num=0;
+	int rNo= r.nextInt(a.length-1);
+	for (int i = 0; i < a.length; i++) {
+		num=a[rNo];
+
+	}
+	return num;
+}
+}
+
+

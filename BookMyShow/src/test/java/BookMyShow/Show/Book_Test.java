@@ -10,6 +10,7 @@ import Generic.wrapperClass;
 
 
 public class Book_Test extends BaseTest{
+	
  HomePage objHomePage = new HomePage(this);
 
  @BeforeMethod
@@ -27,5 +28,11 @@ public class Book_Test extends BaseTest{
 	 objHomePage.clkOnRandomMoview();
 	 objHomePage.getActorsName();
 	 objHomePage.clkbtnOnBookTickets();
+	 objHomePage.selectDate();
+	 objHomePage.varifyTitle();
+	 objHomePage.selectShowTime();
+	 objHomePage.clkOnBtnAccept();
+	 objHomePage.SelectPrimeSeatNumber();
+	 
  }
 }
